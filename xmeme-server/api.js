@@ -14,6 +14,7 @@ router.post("/memes", async (req, res) => {
       name: name,
       url: url,
       caption: caption,
+      postedAt: Date.now(),
     });
     return res.json({
       id: createdDoc.id,

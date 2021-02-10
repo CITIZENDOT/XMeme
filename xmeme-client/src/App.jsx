@@ -14,16 +14,9 @@ function App() {
     <Layout>
       <Router>
         <Switch>
-          <Route path="/new">
-            <MemeForm />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="/:id">
-            <h1>Meme</h1>
-          </Route>
-          <Redirect from="*" to="/admin/index" />
+          <Route path="/new" component={MemeForm} />
+          <Route path="/" component={Home} />
+          <Redirect from="*" to="/" />
         </Switch>
       </Router>
     </Layout>
