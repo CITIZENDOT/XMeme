@@ -28,12 +28,18 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected!");
 });
 
-app.listen(PORT, "0.0.0.0", () =>
+if (PORT == SWAGGER_PORT) {
+  app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+}
+
+app.listen(PORT, () =>
   console.log(`Server is listening at http://localhost:${PORT}`)
 );
 
-const swaggerApp = express();
-swaggerApp.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-swaggerApp.listen(SWAGGER_PORT, "0.0.0.0", () =>
-  console.log(`Swagger UI is listening at http://localhost:${SWAGGER_PORT}`)
-);
+if (PORT != SWAGGER_PORT) {
+  const swaggerApp = express();
+  swaggerApp.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+  swaggerApp.listen(SWAGGER_PORT, () =>
+    console.log(`Swagger UI is listening at http://localhost:${SWAGGER_PORT}`)
+  );
+}
