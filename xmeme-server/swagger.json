@@ -1,0 +1,95 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:8081",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [],
+        "description": "Test Route to know whether server is online",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/memes": {
+      "post": {
+        "tags": [],
+        "description": "Post a new meme",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of the Author (of Meme)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "caption",
+            "in": "path",
+            "description": "Caption to Meme",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "in": "path",
+            "description": "URL to Image of Meme",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "get": {
+        "tags": [],
+        "description": "Get all meme objects as list",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/memes/{id}": {
+      "get": {
+        "tags": [],
+        "description": "Get single meme object",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "patch": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
