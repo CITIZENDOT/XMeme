@@ -173,7 +173,7 @@ const MemeForm = () => {
   }, []);
   return (
     <Row justify="center">
-      <Col span={20} style={{ marginBottom: "5px" }}>
+      <Col span={20} style={{ marginBottom: "15px" }}>
         <a href="/new">
           <Button type="primary" block size="large" shape="round">
             <CloudUploadOutlined />
@@ -181,7 +181,7 @@ const MemeForm = () => {
           </Button>
         </a>
       </Col>
-      <Row gutter={[0, 8]} justify="space-around">
+      <Row gutter={[0, 8]} justify="space-around" style={{ width: "100%" }}>
         {images.map((image, index) => (
           <Col xl={5} md={11} xs={20}>
             <MemeComponent loading={loading} image={image} />
