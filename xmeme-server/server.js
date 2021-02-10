@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
 app.use("/", routes);
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/xmeme", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
