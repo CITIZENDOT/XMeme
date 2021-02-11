@@ -3,7 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8081;
-const SWAGGER_PORT = process.env.PORT || 8080;
+const SWAGGER_PORT = 8080;
 const routes = require("./api.js");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -28,7 +28,7 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected!");
 });
 
-if (PORT == SWAGGER_PORT) {
+if (process.env.NODE_ENV !== "testing") {
   app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 }
 
@@ -36,7 +36,7 @@ app.listen(PORT, () =>
   console.log(`Server is listening at http://localhost:${PORT}`)
 );
 
-if (PORT != SWAGGER_PORT) {
+if (process.env.NODE_ENV === "testing") {
   const swaggerApp = express();
   swaggerApp.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
   swaggerApp.listen(SWAGGER_PORT, () =>

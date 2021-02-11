@@ -16,11 +16,11 @@ router.post("/memes", async (req, res) => {
       caption: caption,
       postedAt: Date.now(),
     });
-    return res.json({
+    return res.status(200).json({
       id: createdDoc.id,
     });
   } catch (err) {
-    return res.json({
+    return res.status(400).json({
       message: err.message,
     });
   }
@@ -35,9 +35,9 @@ router.get("/memes", async (req, res) => {
 router.get("/memes/:id", async (req, res) => {
   try {
     const meme = await Meme.findById(req.params.id).select("-__v");
-    return res.json(meme);
+    return res.status(200).json(meme);
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: err.message,
     });
   }
@@ -66,7 +66,7 @@ router.patch("/memes/:id", async (req, res) => {
       });
     }
   } catch (err) {
-    return res.json({
+    return res.status(500).json({
       message: err.message,
     });
   }
