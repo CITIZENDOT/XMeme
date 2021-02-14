@@ -35,9 +35,10 @@ const tailLayout = {
   },
 };
 
-const MemeComponent = ({ loading, image }) => {
+const MemeComponent = ({ image }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+  const [cardLoading, setCardLoading] = useState(true);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -71,7 +72,7 @@ const MemeComponent = ({ loading, image }) => {
         height: "100%",
         borderRadius: "20px 20px 0 0",
       }}
-      loading={loading}
+      loading={cardLoading}
       cover={
         <Image
           src={image.url}
@@ -83,6 +84,7 @@ const MemeComponent = ({ loading, image }) => {
             objectFit: "contain",
             borderRadius: "20px 20px 0 0",
           }}
+          onLoad={() => setCardLoading(false)}
         />
       }
       actions={[<EditOutlined key="Edit" onClick={showModal} />]}
