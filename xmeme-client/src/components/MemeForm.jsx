@@ -39,18 +39,16 @@ const CreateMemeForm = ({ setImageUrl, setResult }) => {
     await axios
       .post(`${process.env.REACT_APP_SERVER_URL}/memes`, {
         name: values.name,
-        caption: values.caption || undefined,
+        caption: values.caption,
         url: values.url,
       })
       .then((res) => {
-        console.log("[DEBUG]: ", res.data);
         form.resetFields();
         setResult({
           success: true,
           id: res.data.id,
         });
-      })
-      .catch((err) => console.log(err));
+      });
     setLoading(false);
   };
 

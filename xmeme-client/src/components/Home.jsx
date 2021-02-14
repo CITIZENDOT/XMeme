@@ -59,8 +59,7 @@ const MemeComponent = ({ loading, image }) => {
         image.name = values.name;
         image.caption = values.caption;
         image.url = image.url;
-      })
-      .catch((err) => console.log(err));
+      });
     setFormLoading(false);
     setIsModalVisible(false);
   };
@@ -165,7 +164,6 @@ const MemeForm = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/memes`)
       .then((res) => {
-        console.log(res.data);
         setImages(res.data);
       })
       .catch((err) => setError(err));

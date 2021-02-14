@@ -29,6 +29,7 @@ mongoose.connection.on("connected", () => {
 });
 
 if (process.env.NODE_ENV !== "testing") {
+  console.log(`Swagger UI is located at http://localhost:${PORT}`);
   app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 }
 
@@ -40,6 +41,6 @@ if (process.env.NODE_ENV === "testing") {
   const swaggerApp = express();
   swaggerApp.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
   swaggerApp.listen(SWAGGER_PORT, () =>
-    console.log(`Swagger UI is listening at http://localhost:${SWAGGER_PORT}`)
+    console.log(`Swagger UI is located at http://localhost:${SWAGGER_PORT}`)
   );
 }

@@ -1,14 +1,25 @@
 const router = require("express").Router();
 const Meme = require("./models.js");
 
-router.get("/", (req, res) =>
-  res.json({
+router.get("/", (req, res) => {
+  /* To know whether sever is alive :) */
+  return res.json({
     message: "Hello! I am test route.",
-  })
-);
+  });
+});
 
 router.post("/memes", async (req, res) => {
+  /*
+    Creates a new post in Database.
+    * name and url are mandatory arguments.
+    * caption is optional.
+  */
   const { name, url, caption } = req.body;
+  if (!name || !url) {
+    return res.status(400).json({
+      message: "Name and URL are required",
+    });
+  }
   try {
     const createdDoc = await Meme.create({
       name: name,
@@ -27,24 +38,32 @@ router.post("/memes", async (req, res) => {
 });
 
 router.get("/memes", async (req, res) => {
-  const memes = await Meme.find().select("-__v").sort({ _id: -1 }).limit(100);
-
+  // Returns latest 100 memes.
+  const memes = await Meme.find().sort({ _id: -1 }).limit(100);
   return res.json(memes);
 });
 
 router.get("/memes/:id", async (req, res) => {
+  /*
+    Returns details of a single meme, given it's id.
+    * Throws an error, when meme is not found.
+  */
   try {
     const meme = await Meme.findById(req.params.id).select("-__v");
     return res.status(200).json(meme);
   } catch (err) {
     return res.status(404).json({
-      message: err.message,
+      message: "Requested Meme doesn't exist.",
     });
   }
 });
 
 router.patch("/memes/:id", async (req, res) => {
-  console.log("Received", req.params.id);
+  /*
+    Edits existing meme by accepting it's id and url and caption
+    * Name cannot be changed
+    * Throws an error, when meme is not found.
+  */
   const { url, caption } = req.body;
   try {
     const updatedDoc = await Meme.findByIdAndUpdate(
@@ -62,7 +81,7 @@ router.patch("/memes/:id", async (req, res) => {
       });
     } else {
       return res.status(404).json({
-        message: "Meme Not Found",
+        message: "Requested Meme doesn't exist.",
       });
     }
   } catch (err) {
