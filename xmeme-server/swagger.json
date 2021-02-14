@@ -5,11 +5,11 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "https://xmeme-backend-app.herokuapp.com",
+  "host": "xmeme-backend-app.herokuapp.com",
   "basePath": "/",
   "tags": [],
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [],
   "produces": [],
