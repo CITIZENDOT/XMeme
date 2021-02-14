@@ -6,6 +6,10 @@ import HomeOutlined from "@ant-design/icons/HomeOutlined";
 
 const { Header, Content, Footer } = Layout;
 
+/*
+  This Component contains default Layout, which includes PageHeader and Footer for every page.
+*/
+
 function SiderDemo(props) {
   return (
     <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
