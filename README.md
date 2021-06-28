@@ -1,6 +1,6 @@
 # XMeme
 
-This Repo contains entire Source Code to XMeme. Currently hosted at [https://xmeme-stream.netlify.app/](https://xmeme-stream.netlify.app/)
+This Repo contains entire Source Code to XMeme.
 
 Most of the repo is self-explanatory.
 
